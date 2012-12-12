@@ -7,8 +7,6 @@
 # http://forum.synology.com/enu/viewtopic.php?f=64&t=41329
 # ******************************************
 
-# very cmd args - if dir and if recursion
-
 function valid_xcode()
 {
     local  _returnvar=$1
