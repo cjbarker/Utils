@@ -1,4 +1,23 @@
-bin
+# Extensions
+*.diff
+*.log
+*.swo
+*.swp
+*.zip
+
+# OS or Editor folders
+.DS_Store
+._*
+Thumbs.db
+.cache
 .metadata
-*~
-target/
+.project
+.settings
+
+# Build and VC files to ignore
+bin
+dist
+target
+.hg
+.svn
+.CVS
