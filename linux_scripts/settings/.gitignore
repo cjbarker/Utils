@@ -5,6 +5,9 @@
 *.swp
 *.zip
 
+# vim
+*~
+
 # OS or Editor folders
 .DS_Store
 ._*
@@ -13,11 +16,16 @@ Thumbs.db
 .metadata
 .project
 .settings
+.classpath
+.project
+build
 
 # Build and VC files to ignore
 bin
 dist
 target
+work
 .hg
 .svn
 .CVS
+RPMS
