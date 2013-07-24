@@ -49,3 +49,5 @@ set visualbell
 set t_vb=
 set mouse=a
 set history=50
+
+colorscheme torte
