@@ -1,6 +1,6 @@
 [user]
-    name = CJ Barker
-    email = update-email
+	name = CJ Barker
+	email = cj.barker@disney.com
 
 [core]
     editor = vim
@@ -13,12 +13,15 @@
 [url "https://github.com/"]
     insteadOf = gh:
 
+[url "https://github.disney.com/"]
+    insteadOf = ghd:
+
 [color]
     ui = true
 
 [color "branch"]
     current = yellow reverse
-    local = yello
+    local = yellow
     remote = green
 
 [color "diff"]
