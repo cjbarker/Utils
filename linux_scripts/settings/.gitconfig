@@ -1,6 +1,6 @@
 [user]
 	name = CJ Barker
-	email = cj.barker@disney.com
+	email = cjbarker@gmail.com
 
 [core]
     editor = vim
@@ -12,9 +12,6 @@
 
 [url "https://github.com/"]
     insteadOf = gh:
-
-[url "https://github.disney.com/"]
-    insteadOf = ghd:
 
 [color]
     ui = true

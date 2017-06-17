@@ -109,6 +109,6 @@ if [ $(id -u) -eq 0 ];
 then
     export PS1="\[\e[41m\]\u\[\e[m\]@\h \W# "
 else
-    export PS1="\u@\h \W\`parse_git_branch\`\\$ "
+    export PS1="\u@\h ./\W\`parse_git_branch\`\\$ "
 fi
 
