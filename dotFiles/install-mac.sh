@@ -28,11 +28,16 @@ function cmd_exists
     fi 
 }
 
+# ###########################################################
 # Install non-brew various tools 
+# ###########################################################
 xcode-select --install
 pip2 install --upgrade pip setuptools
 pip install virtualenv
 
+# ###########################################################
+# BREW INSTALLS
+# ###########################################################
 rc=`cmd_exists brew`
 if [ "$rc" -ne "0" ]; then
     echo -e 'Installing Brew'
@@ -76,13 +81,24 @@ done
 brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
 
+
+# ###########################################################
 # Install dotFile configurations
+# ###########################################################
 if [ -f .bashrc ]; then
     cp .bashrc ~/.
 fi
 
 if [ -f .profile ]; then
     cp .profile ~/.
+fi
+
+if [ -f .gitconfig ]; then
+    cp .gitconfig ~/.
+fi
+
+if [ -f .gitignore ]; then
+    cp .gitignore ~/.
 fi
 
 source ~/.profile
