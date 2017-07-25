@@ -77,5 +77,13 @@ brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
 
 # Install dotFile configurations
+if [ -f .bashrc ]; then
+    cp .bashrc ~/.
+fi
 
+if [ -f .profile ]; then
+    cp .profile ~/.
+fi
+
+source ~/.profile
 
