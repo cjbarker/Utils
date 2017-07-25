@@ -1,10 +1,13 @@
 export PATH=/usr/sbin:/usr/local/sbin:/usr/local/bin:$PATH:/sbin:
 
+source ~/.bashrc
+
 # ----------------------------
 # ALIAS
 # ----------------------------
 alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
 alias weather='ansiweather -l Seattle,WA -u imperial'
+alias f='thefuck'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
@@ -17,7 +20,7 @@ alias hclear='history -c; clear'
 alias ll='ls -laGFh'
 #alias ll='ls -laG'
 alias vi='vim'
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias ip='/sbin/ifconfig'
 alias tidy_xml='tidy -utf8 -xml -w 255 -i -c -q -asxml'
 alias df='df -h'
@@ -30,6 +33,7 @@ alias reboot='sudo /sbin/reboot'
 alias shutdown='sudo /sbin/shutdown -t now'
 alias prettyjson='python -m json.tool'
 alias db_mysql='mysql -h localhost -u root'
+alias tl='tldr'
 
 # get current branch in git repo
 function parse_git_branch() {
@@ -103,6 +107,8 @@ export BLOCKSIZE=1K
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+export M2_HOME=/usr/local/Cellar/maven/3.5.0/
+export PATH=$M2:$PATH
 export GOPATH=$HOME/go
 
 if [ $(id -u) -eq 0 ];
