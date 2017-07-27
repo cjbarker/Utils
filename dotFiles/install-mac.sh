@@ -34,6 +34,7 @@ function cmd_exists
 xcode-select --install
 pip2 install --upgrade pip setuptools
 pip install virtualenv
+#sudo pip install python-owasp-zap-v2.4
 
 # ###########################################################
 # BREW INSTALLS
