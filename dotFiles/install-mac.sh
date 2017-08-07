@@ -34,8 +34,22 @@ function cmd_exists
 xcode-select --install
 pip2 install --upgrade pip setuptools
 pip install virtualenv
-pip install --user scapy
-pip install --user python-owasp-zap-v2.4
+pip install python-owasp-zap-v2.4 --user
+
+# Python Scapy
+curl -L https://github.com/dugsong/libdnet/archive/libdnet-1.12.zip -o libdnet-1.12.zip
+unzip libdnet-1.12.zip
+cd libdnet-libdnet-1.12
+./configure
+make
+sudo make install
+cd python
+python setup.py install --user
+pip install pypcap --user
+pip install scapy --user
+pip install pyx==0.12.1 -I --no-cache --user
+sudo pip install user pycrypto
+pip install ecdsa  --user
 
 # ###########################################################
 # BREW INSTALLS
