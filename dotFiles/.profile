@@ -99,6 +99,12 @@ function parse_git_dirty {
 }
 
 # ----------------------------
+# CONFIG BREW Settings
+# ----------------------------
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[[ -s $(brew --prefix)/etc/profile.d/bash_completion.sh ]] && . $(brew --prefix)/etc/profile.d/bash_completion.sh
+
+# ----------------------------
 # ENV VARIABLES
 # ----------------------------
 export HISTSIZE=5000
