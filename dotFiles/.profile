@@ -117,6 +117,19 @@ export M2_HOME=/usr/local/Cellar/maven/3.5.0/
 export PATH=$M2:$PATH
 export GOPATH=$HOME/go
 
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
+
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java9='export JAVA_HOME=$JAVA_9_HOME'
+
+#default java8
+export JAVA_HOME=$JAVA_8_HOME
+export PATH=$JAVA_8_HOME/bin:$PATH
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+pyenv local 2.7.14
+
 if [ $(id -u) -eq 0 ];
 then
     export PS1="\[\e[41m\]\u\[\e[m\]@\h \W# "
