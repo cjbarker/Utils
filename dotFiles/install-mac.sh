@@ -7,9 +7,9 @@
 declare -a BREW_CLI
 declare -a BREW_GUI
 
-BREW_CLI=(go python jython python3 mono wget htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform macvim rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy) 
+BREW_CLI=(git go node mono wget htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy) 
 
-BREW_GUI=(wireshark google-chrome java vlc iterm2 macvim virtualbox spotify skype android-studio eclipse-java slack visual-studio-code dash gimp brave flux spectacle github-desktop google-earth-pro android-sdk lastpass handbrake easyfind keybase balsamiq-mockups owasp-zap)
+BREW_GUI=(java java8 wireshark virtualbox skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk lastpass handbrake easyfind keybase)
 
 function echoerr {
     echo "$@" 1>&2
@@ -31,25 +31,10 @@ function cmd_exists
 # ###########################################################
 # Install non-brew various tools 
 # ###########################################################
+# invoke xcode install from app store
 xcode-select --install
-pip2 install --upgrade pip setuptools
-pip install virtualenv
-pip install python-owasp-zap-v2.4 --user
-
-# Python Scapy
-curl -L https://github.com/dugsong/libdnet/archive/libdnet-1.12.zip -o libdnet-1.12.zip
-unzip libdnet-1.12.zip
-cd libdnet-libdnet-1.12
-./configure
-make
-sudo make install
-cd python
-python setup.py install --user
-pip install pypcap --user
-pip install scapy --user
-pip install pyx==0.12.1 -I --no-cache --user
-sudo pip install user pycrypto
-pip install ecdsa  --user
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -license accept
 
 # ###########################################################
 # BREW INSTALLS
@@ -70,6 +55,13 @@ brew doctor
 # pull tap libs
 brew tap homebrew/science
 
+# python
+brew installl pyenv
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
+pyenv install 2.7.14
+pyenv install 3.6.3
+pyenv local 2.7.14
+
 # Install Brew CLI apps
 for cmd in "${BREW_CLI[@]}"
 do
@@ -80,6 +72,10 @@ do
         exit $rc 
     fi 
 done
+
+# Special flags for brew
+brew install macvim --with-override-system-vi
+ln -s /usr/local/bin/mvim /usr/local/bin/vim
 
 # Install Cask GUI Apps
 for app in "${BREW_GUI[@]}"
@@ -96,7 +92,6 @@ done
 # cleanup
 brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
-
 
 # ###########################################################
 # Install dotFile configurations
@@ -119,3 +114,31 @@ fi
 
 source ~/.profile
 
+# ###########################################################
+# SETUP DEFAULTS
+# ###########################################################
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+defaults write com.apple.finder AppleShowAllFiles -bool YES
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+defaults write -g QLPanelAnimationDuration -float 0
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+defaults write com.apple.finder DisableAllAnimations -bool true
+defaults write com.apple.dock launchanim -bool false
+defaults write com.apple.dock expose-animation-duration -float 0.1
+defaults write com.apple.Dock autohide-delay -float 0
+defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
+defaults write com.google.Chrome AppleLanguages '(en-US)'
+defaults write com.google.Chrome DisablePrintPreview -bool true
+defaults write com.google.Keystone.Agent checkInterval 172800
+# disable reopen windows in logging back in
+defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false 
+defaults write com.apple.dock expose-animation-duration -float 0.12 
+defaults write com.apple.Dock showhidden -bool YES
+defaults write com.apple.finder CreateDesktop -bool false
+defaults write com.apple.screencapture location ~/Downloads/screenshots
+
+killall Finder
+killall Dock
