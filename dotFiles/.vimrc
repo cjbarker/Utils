@@ -117,4 +117,9 @@ set noswapfile
 
 " Enable NerdTree
 autocmd vimenter * NERDTree
+" Config NerdTree
+let NERDTreeQuitOnOpen = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows= 1
+let NERDTreeAutoDeleteBuffer = 1
 

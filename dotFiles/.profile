@@ -5,7 +5,6 @@ source ~/.bashrc
 # ----------------------------
 # ALIAS
 # ----------------------------
-alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
 alias weather='ansiweather -l Seattle,WA -u imperial'
 alias f='thefuck'
 alias cp='cp -iv'
@@ -17,10 +16,9 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias c='clear'
 alias hclear='history -c; clear'
-alias ll='ls -laGFh'
+alias ll='ls -l -a -G -F -h'
 #alias ll='ls -laG'
 alias vi='vim'
-#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias ip='/sbin/ifconfig'
 alias tidy_xml='tidy -utf8 -xml -w 255 -i -c -q -asxml'
 alias df='df -h'
@@ -99,12 +97,6 @@ function parse_git_dirty {
 }
 
 # ----------------------------
-# CONFIG BREW Settings
-# ----------------------------
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-[[ -s $(brew --prefix)/etc/profile.d/bash_completion.sh ]] && . $(brew --prefix)/etc/profile.d/bash_completion.sh
-
-# ----------------------------
 # ENV VARIABLES
 # ----------------------------
 export HISTSIZE=5000
@@ -113,12 +105,12 @@ export BLOCKSIZE=1K
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-export M2_HOME=/usr/local/Cellar/maven/3.5.0/
+#export M2_HOME=/usr/local/Cellar/maven/3.5.0/
 export PATH=$M2:$PATH
-export GOPATH=$HOME/go
+#export GOPATH=$HOME/go
 
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
+#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+#export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
 
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
 alias java9='export JAVA_HOME=$JAVA_9_HOME'
@@ -126,9 +118,6 @@ alias java9='export JAVA_HOME=$JAVA_9_HOME'
 #default java8
 export JAVA_HOME=$JAVA_8_HOME
 export PATH=$JAVA_8_HOME/bin:$PATH
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-
-pyenv local 2.7.14
 
 if [ $(id -u) -eq 0 ];
 then
