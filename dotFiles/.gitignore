@@ -29,3 +29,4 @@ work
 .svn
 .CVS
 RPMS
+.python-version
