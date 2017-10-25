@@ -14,6 +14,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Plugins
 Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
