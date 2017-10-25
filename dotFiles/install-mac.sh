@@ -7,7 +7,7 @@
 declare -a BREW_CLI
 declare -a BREW_GUI
 
-BREW_CLI=(bash git go node ruby mono wget htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy) 
+BREW_CLI=(bash git go node ruby mono wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy) 
 
 BREW_GUI=(java java8 wireshark virtualbox skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk lastpass handbrake easyfind keybase)
 
