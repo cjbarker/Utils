@@ -5,10 +5,15 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Enable fzf
+set rtp+=/usr/local/opt/fzf
+call vundle#begin()
+
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins
+Plugin 'junegunn/fzf'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
@@ -117,6 +122,7 @@ set noswapfile
 
 " Enable NerdTree
 autocmd vimenter * NERDTree
+
 " Config NerdTree
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
