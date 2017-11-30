@@ -1,6 +1,6 @@
 [user]
-	name = CJ Barker
-	email = cjbarker@gmail.com
+    name = CJ Barker
+    email = cjbarker@gmail.com
 
 [core]
     editor = vim
@@ -12,6 +12,15 @@
 
 [url "https://github.com/"]
     insteadOf = gh:
+
+[url "https://gist.github.com/"]
+    insteadOf = gist:
+
+[url "https://gitlab.com/"]
+    insteadOf = gl:
+
+[url "https://bitbucket.org/"]
+    insteadOf = bb:
 
 [color]
     ui = true
@@ -31,3 +40,19 @@
     added = yellow
     changed = green
     untracked = red
+
+[alias]
+    # show all branches
+    br = branch -av
+
+    # delete branch
+    brdel = branch -d
+
+    # unstage changes from index
+    unstage = reset HEAD --
+
+    # list all tags
+    tags = tag -l
+
+    # Start a new local repository and perform initial commit
+    this = !git init && git add . && git commmit -m \"Initial commit.\"
