@@ -1,7 +1,5 @@
 export PATH=/usr/sbin:/usr/local/sbin:/usr/local/bin:$PATH:/sbin:
 
-source ~/.bashrc
-
 # ----------------------------
 # ALIAS
 # ----------------------------
@@ -32,6 +30,12 @@ alias shutdown='sudo /sbin/shutdown -t now'
 alias prettyjson='python -m json.tool'
 alias db_mysql='mysql -h localhost -u root'
 alias tl='tldr'
+alias ga='git add -A'
+alias gc='git commit -m '
+alias gp='git push'
+alias gs='git status'
+alias gd='git diff'
+
 
 # get current branch in git repo
 function parse_git_branch() {
@@ -107,10 +111,13 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 #export M2_HOME=/usr/local/Cellar/maven/3.5.0/
 export PATH=$M2:$PATH
-#export GOPATH=$HOME/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
 
-#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-#export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
+export ANDROID_HOME=/usr/local/share/android-sdk/
+
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
 
 alias java8='export JAVA_HOME=$JAVA_8_HOME'
 alias java9='export JAVA_HOME=$JAVA_9_HOME'
