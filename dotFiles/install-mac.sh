@@ -137,6 +137,7 @@ defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
 defaults write com.google.Chrome AppleLanguages '(en-US)'
 defaults write com.google.Chrome DisablePrintPreview -bool true
 defaults write com.google.Keystone.Agent checkInterval 172800
+defaults write com.apple.dashboard devmode YES
 # disable reopen windows in logging back in
 defaults write com.apple.loginwindow TALLogoutSavesState -bool false
 defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false 
