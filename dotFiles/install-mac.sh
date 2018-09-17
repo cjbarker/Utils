@@ -7,7 +7,7 @@
 declare -a BREW_CLI
 declare -a BREW_GUI
 
-BREW_CLI=(bash git go node ruby mono wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy lzip sslmate) 
+BREW_CLI=(bash git go node ruby mono wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format)
 
 BREW_GUI=(java java8 wireshark virtualbox skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk lastpass handbrake easyfind keybase)
 
@@ -22,14 +22,14 @@ function cmd_exists
 
     if [ -n "$result" ]; then
         echo 0
-    else 
+    else
         #echoerr "Command ${1} does not exist. Unable to execute script."
         echo 1
-    fi 
+    fi
 }
 
 # ###########################################################
-# Install non-brew various tools 
+# Install non-brew various tools
 # ###########################################################
 # invoke xcode install from app store
 xcode-select --install
@@ -43,7 +43,7 @@ rc=`cmd_exists brew`
 if [ "$rc" -ne "0" ]; then
     echo -e 'Installing Brew'
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi 
+fi
 
 # Update Brew
 brew update
@@ -54,8 +54,9 @@ brew doctor
 
 # pull tap libs
 brew tap homebrew/science
+brew tap wata727/tflint
 
-# Ruby Gems 
+# Ruby Gems
 sudo gem install cocoapods
 sudo gem install fastlane
 sudo gem install jazzy
@@ -74,8 +75,8 @@ do
     brew install ${cmd}
     if [ "$?" -ne "0" ]; then
         echoerr "Failed to install ${cmd}"
-        exit $rc 
-    fi 
+        exit $rc
+    fi
 done
 
 # Special flags for brew
@@ -90,8 +91,8 @@ do
     brew cask install --appdir="/Applications" ${app}
     if [ "$?" -ne "0" ]; then
         echoerr "Failed to install ${app}"
-        exit $rc 
-    fi 
+        exit $rc
+    fi
 done
 
 # cleanup
@@ -140,8 +141,8 @@ defaults write com.google.Keystone.Agent checkInterval 172800
 defaults write com.apple.dashboard devmode YES
 # disable reopen windows in logging back in
 defaults write com.apple.loginwindow TALLogoutSavesState -bool false
-defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false 
-defaults write com.apple.dock expose-animation-duration -float 0.12 
+defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+defaults write com.apple.dock expose-animation-duration -float 0.12
 defaults write com.apple.Dock showhidden -bool YES
 defaults write com.apple.finder CreateDesktop -bool false
 defaults write com.apple.screencapture location ~/Downloads/screenshots

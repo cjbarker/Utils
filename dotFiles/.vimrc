@@ -15,7 +15,10 @@ Plugin 'gmarik/Vundle.vim'
 " Plugins
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'itchyny/lightline.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'w0rp/ale'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -34,6 +37,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'tyru/open-browser.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'fatih/vim-go'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'joegesualdo/jsdoc.vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'godlygeek/tabular'
 
 " Color Schemes
 Plugin 'tomasr/molokai'
@@ -42,15 +49,6 @@ Plugin 'flazz/vim-colorschemes'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 syntax on
 
@@ -130,3 +128,51 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows= 1
 let NERDTreeAutoDeleteBuffer = 1
 
+" ALE Linters
+let g:ale_linters = {
+\   'java': ['checkstyle', 'javac', 'google-java-format', 'pmd'],
+\   'javascript': ['eslint'],
+\   'python': ['pylint'],
+\   'c': ['cppcheck'],
+\   'vim': ['vim-vint'],
+\   'terraform': ['tflint'],
+\   'make': ['checkmake'],
+\   'css': ['prettier'],
+\   'json': ['jq, jsonlint, prettier'],
+\   'markdown': ['alex !!, prettier', 'proselint'],
+\   'proto': ['protoc-gen-lint'],
+\   'ymal': ['prettier'],
+\   'go': ['gofmt', 'go vet !!', 'golint'],
+\   'html': ['alex !!', 'htmlhint', 'proselint', 'tidy'],
+\   'latex': ['alex !!', 'proselint'],
+\   'xhtml': ['alex !!', 'proselint'],
+\   'asciidoc': ['alex !!', 'proselint'],
+\}
+
+" ALE Fixers
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'java': ['checkstyle', 'javac', 'google-java-format', 'pmd'],
+\   'javascript': ['eslint'],
+\   'python': ['pylint'],
+\   'c': ['cppcheck'],
+\   'vim': ['vim-vint'],
+\   'terraform': ['tflint'],
+\   'make': ['checkmake'],
+\   'css': ['prettier'],
+\   'json': ['jq, jsonlint, prettier'],
+\   'markdown': ['alex !!, prettier', 'proselint'],
+\   'proto': ['protoc-gen-lint'],
+\   'ymal': ['prettier'],
+\   'go': ['gofmt', 'go vet !!', 'golint'],
+\   'html': ['alex !!', 'htmlhint', 'proselint', 'tidy'],
+\   'latex': ['alex !!', 'proselint'],
+\   'xhtml': ['alex !!', 'proselint'],
+\   'asciidoc': ['alex !!', 'proselint'],
+\}
+
+" Set this variable to 1 to fix files when you save them.
+" let g:ale_fix_on_save = 1
+
+" Vim-Vint via Scrooloose/syntastic
+" let g:syntastic_vim_checkers = ['vint']
