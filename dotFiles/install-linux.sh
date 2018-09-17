@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# update repos
+add-apt-repository ppa:masterminds/glide 
+add-apt-repository ppa:gophers/archive
+
 apt update
 apt -y upgrade
 apt dist-upgrade
@@ -13,11 +17,11 @@ apt install -y whois
 apt install -y make
 apt install -y build-essential
 apt install -y python-pip python-dev python3-dev python-setuptools
-apt install -y nodejs nodejs-legacy npm
 apt install -y curl wget
 apt install -y git
 apt install -y git-flow
-apt install -y golang
+apt install -y golang-1.10-go
+apt install -y glide
 apt install -y tree
 apt install -y bash-completion
 apt install -y htop
@@ -53,12 +57,20 @@ apt install -y conky
 apt install -y gnome-control-center 
 apt install -y gnome-online-accounts
 apt install -y xfonts-terminus
-
 apt install -y default-jre
 apt install -y default-jdk
 add-apt-repository ppa:webupd8team/java
 apt-get update
 apt-get install oracle-java8-installer
+
+# NodeJS
+apt install -y python-software-properties
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+apt install -y nodejs nodejs-legacy npm
+
+# NTP 
+apt install -y ntpdate
+ntpdate -s time.nist.gov
 
 # Google Drive
 add-apt-repository ppa:alessandro-strada/ppa
@@ -75,3 +87,5 @@ wget -O skype-install.deb http://www.skype.com/go/getskype-linux-deb
 dpkg -i skype-install.deb
 apt-get -f -y install
 rm -rf skype-install.deb
+
+apt autoremove -y
