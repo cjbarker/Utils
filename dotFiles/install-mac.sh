@@ -7,7 +7,7 @@
 declare -a BREW_CLI
 declare -a BREW_GUI
 
-BREW_CLI=(bash git go node ruby mono wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format)
+BREW_CLI=(bash git go node ruby mono wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format miktex)
 
 BREW_GUI=(java java8 wireshark virtualbox skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk lastpass handbrake easyfind keybase)
 
@@ -55,6 +55,8 @@ brew doctor
 # pull tap libs
 brew tap homebrew/science
 brew tap wata727/tflint
+brew tap miktex/miktex
+
 
 # Ruby Gems
 sudo gem install cocoapods
