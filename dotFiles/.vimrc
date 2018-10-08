@@ -1,6 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set shell=/bin/bash
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -170,6 +172,9 @@ let g:ale_fixers = {
 \   'xhtml': ['alex !!', 'proselint'],
 \   'asciidoc': ['alex !!', 'proselint'],
 \}
+
+" Python remove training white space
+autocmd BufWritePre *.py :%s/\s\+$//e
 
 " Set this variable to 1 to fix files when you save them.
 " let g:ale_fix_on_save = 1
