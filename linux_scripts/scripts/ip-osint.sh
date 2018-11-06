@@ -63,7 +63,7 @@ function process() {
     resolved_domains=$(dig +short -x 216.58.216.46 | paste -sd "," -)
 
     # Ping - Readchable
-    ping -W 3 -c 3 -q ${ip} 2>&1 >/dev/null
+    ping -W 3 -c 3 -q ${ip} 2> /dev/null
     if [ $? -eq 0 ]; then
         is_pingable="Y"
     else
