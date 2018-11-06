@@ -60,7 +60,7 @@ function process() {
         domain=${ip}
         ip=${tmp}
     fi
-    resolved_domains=$(dig +short -x 216.58.216.46 | paste -sd "," -)
+    resolved_domains=$(dig +short -x ${ip} | paste -sd "," -)
 
     # Ping - Readchable
     ping -W 3 -c 3 -q ${ip} 2>/dev/null 1>/dev/null
@@ -71,7 +71,6 @@ function process() {
     fi
     # continue even if not pingable - might be blocking ICMP
 
-    resolved_domains=$(dig +short -x 216.58.216.46 | paste -sd "," -)
     tmp=$(nc -z -n -v -G 2 ${ip} 80 2>&1 | grep succeeded)
     if [ $? -eq 0 ]; then
         http_on="Y"
