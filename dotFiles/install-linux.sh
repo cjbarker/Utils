@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # update repos
-add-apt-repository ppa:masterminds/glide 
+add-apt-repository ppa:masterminds/glide
 add-apt-repository ppa:gophers/archive
 
 apt update
@@ -16,7 +16,8 @@ apt install -y jq
 apt install -y whois
 apt install -y make
 apt install -y build-essential
-apt install -y python-pip python-dev python3-dev python-setuptools
+apt install -y pip python-pip python3-pip python-dev python3-dev python-setuptools
+apt install -y python3-opencv
 apt install -y curl wget
 apt install -y git
 apt install -y git-flow
@@ -25,7 +26,7 @@ apt install -y glide
 apt install -y tree
 apt install -y bash-completion
 apt install -y htop
-apt install -y tree
+apt install -y httpstat
 apt install -y nmap
 apt install -y dos2unix
 apt install -y tmux
@@ -54,7 +55,7 @@ apt install -y gimp
 apt install -y virtualbox
 apt install -y i3
 apt install -y conky
-apt install -y gnome-control-center 
+apt install -y gnome-control-center
 apt install -y gnome-online-accounts
 apt install -y xfonts-terminus
 apt install -y default-jre
@@ -68,7 +69,7 @@ apt install -y python-software-properties
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 apt install -y nodejs nodejs-legacy npm
 
-# NTP 
+# NTP
 apt install -y ntpdate
 ntpdate -s time.nist.gov
 
