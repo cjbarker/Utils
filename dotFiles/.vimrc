@@ -58,6 +58,7 @@ syntax on
 " global enable spell check
 "set spell spelllang=en_us   " spell check go to highlighted word and "z=" to see list to turn off set nospell
 setlocal spell spelllang=en_us
+setlocal spellfile=$HOME/repos/Utils/dotFiles/vim-spell-en.utf-8.add
 autocmd BufRead,BufNewFile *.md,*.txt setlocal spell  " enable spell check for certain files
 set history=500 " how many lines history VIM remembers
 filetype plugin on
