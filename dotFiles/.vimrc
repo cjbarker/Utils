@@ -17,6 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 " Plugins
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/limelight.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'w0rp/ale'
@@ -45,8 +46,10 @@ Plugin 'rizzatti/dash.vim'
 Plugin 'godlygeek/tabular'
 
 " Color Schemes
-Plugin 'tomasr/molokai'
-Plugin 'flazz/vim-colorschemes'
+Plugin 'junegunn/seoul256.vim'
+" Unified color scheme (default: dark)
+let g:seoul256_background = 233
+colo seoul256
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -54,7 +57,11 @@ filetype plugin indent on    " required
 
 syntax on
 
-" General
+" General Various Settings
+" Redraw after executing the function. Helps w/ performance
+set lazyredraw
+set regexpengine=1
+
 " global enable spell check
 "set spell spelllang=en_us   " spell check go to highlighted word and "z=" to see list to turn off set nospell
 setlocal spell spelllang=en_us
