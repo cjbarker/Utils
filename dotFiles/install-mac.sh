@@ -7,9 +7,9 @@
 declare -a BREW_CLI
 declare -a BREW_GUI
 
-BREW_CLI=(bash git go node ruby mono wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format miktex)
+BREW_CLI=(bash pkg-config openssl git go python python3 node ruby mono kubectl wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format)
 
-BREW_GUI=(java java8 wireshark virtualbox skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk lastpass handbrake easyfind keybase)
+BREW_GUI=(java java8 vivaldi spectacle wireshark virtualbox zoomus skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk handbrake easyfind keybase google-backup-and-sync)
 
 function echoerr {
     echo "$@" 1>&2
@@ -29,7 +29,7 @@ function cmd_exists
 }
 
 # ###########################################################
-# Install non-brew various tools
+# Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
 # invoke xcode install from app store
 xcode-select --install
@@ -48,15 +48,14 @@ fi
 # Update Brew
 brew update
 brew upgrade
-brew prune
 brew cleanup
 brew doctor
 
 # pull tap libs
-brew tap homebrew/science
+brew tap homebrew/cask
+brew tap caskroom/versions
 brew tap wata727/tflint
 brew tap miktex/miktex
-
 
 # Ruby Gems
 sudo gem install cocoapods
@@ -64,11 +63,11 @@ sudo gem install fastlane
 sudo gem install jazzy
 
 # python
-brew installl pyenv
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
-pyenv install 2.7.14
-pyenv install 3.6.3
-pyenv local 2.7.14
+#brew install pyenv
+#export PYTHON_CONFIGURE_OPTS="--enable-framework"
+#pyenv install 2.7.14
+#pyenv install 3.6.3
+#pyenv local 2.7.14
 
 # Install Brew CLI apps
 for cmd in "${BREW_CLI[@]}"
@@ -100,6 +99,19 @@ done
 # cleanup
 brew cleanup --force
 rm -f -r /Library/Caches/Homebrew/*
+
+# ###########################################################
+# Install non-brew various tools (POST-BREW Installs)
+# ###########################################################
+# VIM Vuncle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# Python3 Jupyter Notebook
+python3 -m pip install --upgrade pip
+python3 -m pip install jupyter
+
+# Python2 Updates
+pip install --upgrade pip setuptools
 
 # ###########################################################
 # Install dotFile configurations
