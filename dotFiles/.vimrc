@@ -23,10 +23,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'bling/vim-airline'
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 Plugin 'elzr/vim-json'
 Plugin 'honza/vim-snippets'
 Plugin 'justinmk/vim-sneak'
@@ -40,7 +38,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tyru/open-browser.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'fatih/vim-go'
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 Plugin 'joegesualdo/jsdoc.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'godlygeek/tabular'
@@ -48,8 +46,8 @@ Plugin 'godlygeek/tabular'
 " Color Schemes
 Plugin 'junegunn/seoul256.vim'
 " Unified color scheme (default: dark)
-let g:seoul256_background = 233
 colo seoul256
+set background=dark
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,7 +61,7 @@ set lazyredraw
 set regexpengine=1
 
 " global enable spell check
-"set spell spelllang=en_us   " spell check go to highlighted word and "z=" to see list to turn off set nospell
+set spell spelllang=en_us   " spell check go to highlighted word and "z=" to see list to turn off set nospell
 setlocal spell spelllang=en_us
 setlocal spellfile=$HOME/repos/Utils/dotFiles/vim-spell-en.utf-8.add
 autocmd BufRead,BufNewFile *.md,*.txt setlocal spell  " enable spell check for certain files
@@ -97,12 +95,6 @@ set wildmenu    " visual autocomplete for command menu
 set lazyredraw  " redraw ony when we need to
 set showmatch   " highly matching [{()}]
 set ruler       " always show current position
-try
-    colorscheme desert
-catch
-endtry
-
-set background=dark
 
 " Searching
 set ignorecase  " ignore case when searching
@@ -133,14 +125,17 @@ set nobackup
 set nowb
 set noswapfile
 
-" Enable NerdTree
-autocmd vimenter * NERDTree
-
-" Config NerdTree
-let NERDTreeQuitOnOpen = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows= 1
-let NERDTreeAutoDeleteBuffer = 1
+" Netrw
+" https://shapeshed.com/vim-netrw/
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
 
 " ALE Linters
 let g:ale_linters = {
