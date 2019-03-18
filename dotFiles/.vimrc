@@ -1,14 +1,13 @@
-set nocompatible              " be iMproved, required
 filetype off                  " required
 
 set shell=/bin/bash
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Enable fzf
-set rtp+=/usr/local/opt/fzf
+set runtimepath+=/usr/local/opt/fzf
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -24,7 +23,6 @@ Plugin 'w0rp/ale'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
-" Plugin 'SirVer/ultisnips'
 Plugin 'elzr/vim-json'
 Plugin 'honza/vim-snippets'
 Plugin 'justinmk/vim-sneak'
@@ -38,7 +36,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tyru/open-browser.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'fatih/vim-go'
-" Plugin 'davidhalter/jedi-vim'
 Plugin 'joegesualdo/jsdoc.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'godlygeek/tabular'
@@ -64,19 +61,24 @@ set regexpengine=1
 set spell spelllang=en_us   " spell check go to highlighted word and "z=" to see list to turn off set nospell
 setlocal spell spelllang=en_us
 setlocal spellfile=$HOME/repos/Utils/dotFiles/vim-spell-en.utf-8.add
-autocmd BufRead,BufNewFile *.md,*.txt setlocal spell  " enable spell check for certain files
+
+augroup buf
+    autocmd BufRead,BufNewFile *.md,*.txt setlocal spell  " enable spell check for certain files
+    " Any file remove training white space
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
+
 set history=500 " how many lines history VIM remembers
 filetype plugin on
 filetype indent on
 set autoread    " auto read when file is change from outside
 nmap <leader>w :w!<cr>  " fast saving
-set ffs=unix,dos,mac    " Unix as standard file type
+set fileformats=unix,dos,mac    " Unix as standard file type
 
 " UTF-8 encoding
-set enc=utf-8
-set fenc=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
 set termencoding=utf-8
-
 
 " Spaces & Tabs
 set expandtab
@@ -84,7 +86,7 @@ set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set lbr
+set linebreak
 set textwidth=120     " wrap lines after chars
 
 " UI Config
@@ -113,16 +115,18 @@ set foldmethod=indent   " fold based on indent level
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+set timeoutlen=500
 
 " Disable sound on errors on MacVim
-if has("gui_macvim")
-    autocmd GUIEnter * set vb t_vb=
+if has('gui_macvim')
+    augroup macvim
+        autocmd GUIEnter * set vb t_vb=
+    augroup END
 endif
 
 " Files, Backups, Undo
 set nobackup
-set nowb
+set nowritebackup
 set noswapfile
 
 " Netrw
@@ -137,13 +141,26 @@ augroup ProjectDrawer
   autocmd VimEnter * :Vexplore
 augroup END
 
+" Scrooloose/syntastic Settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Vim-Vint via Scrooloose/syntastic
+let g:syntastic_vim_checkers = ['vint']
+let g:syntastic_vim_vint_exe = 'LC_CTYPE=UTF-8 vint'
+
 " ALE Linters
 let g:ale_linters = {
 \   'java': ['checkstyle', 'javac', 'google-java-format', 'pmd'],
 \   'javascript': ['eslint'],
 \   'python': ['pylint'],
 \   'c': ['cppcheck'],
-\   'vim': ['vim-vint'],
+\   'vim': ['vint'],
 \   'terraform': ['tflint'],
 \   'make': ['checkmake'],
 \   'css': ['prettier'],
@@ -151,7 +168,7 @@ let g:ale_linters = {
 \   'markdown': ['alex !!, prettier', 'proselint'],
 \   'proto': ['protoc-gen-lint'],
 \   'ymal': ['prettier'],
-\   'go': ['gofmt', 'go vet !!', 'golint'],
+\   'go': ['gofmt', 'go vet', 'golint'],
 \   'html': ['alex !!', 'htmlhint', 'proselint', 'tidy'],
 \   'latex': ['alex !!', 'proselint'],
 \   'xhtml': ['alex !!', 'proselint'],
@@ -165,7 +182,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'python': ['pylint'],
 \   'c': ['cppcheck'],
-\   'vim': ['vim-vint'],
+\   'vim': ['vint'],
 \   'terraform': ['tflint'],
 \   'make': ['checkmake'],
 \   'css': ['prettier'],
@@ -173,18 +190,13 @@ let g:ale_fixers = {
 \   'markdown': ['alex !!, prettier', 'proselint'],
 \   'proto': ['protoc-gen-lint'],
 \   'ymal': ['prettier'],
-\   'go': ['gofmt', 'go vet !!', 'golint'],
+\   'go': ['gofmt', 'go vet', 'golint'],
 \   'html': ['alex !!', 'htmlhint', 'proselint', 'tidy'],
 \   'latex': ['alex !!', 'proselint'],
 \   'xhtml': ['alex !!', 'proselint'],
 \   'asciidoc': ['alex !!', 'proselint'],
 \}
 
-" Python remove training white space
-autocmd BufWritePre *.py :%s/\s\+$//e
-
+let g:ale_lint_on_text_changed = 0
 " Set this variable to 1 to fix files when you save them.
-" let g:ale_fix_on_save = 1
-
-" Vim-Vint via Scrooloose/syntastic
-" let g:syntastic_vim_checkers = ['vint']
+"let g:ale_fix_on_save = 1
