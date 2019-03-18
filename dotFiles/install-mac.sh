@@ -11,6 +11,10 @@ BREW_CLI=(bash pkg-config libtool openssl git go python python3 node ruby hugo p
 
 BREW_GUI=(java java8 vivaldi spectacle wireshark virtualbox zoomus skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk handbrake easyfind keybase google-backup-and-sync)
 
+PIP_MODS=(jupyter unique utils enum enum34 pathlib typing vim-vint requests)
+
+PIP3_MODS=(jupyter requests numpy scipy matplotlib BeautifulSoup scrapy scapy nose2 nltk prettytable progressbar uuid docopt psycopg2 pysqlite)
+
 function echoerr {
     echo "$@" 1>&2
 }
@@ -62,13 +66,6 @@ sudo gem install cocoapods
 sudo gem install fastlane
 sudo gem install jazzy
 
-# python
-#brew install pyenv
-#export PYTHON_CONFIGURE_OPTS="--enable-framework"
-#pyenv install 2.7.14
-#pyenv install 3.6.3
-#pyenv local 2.7.14
-
 # Install bazel taps and bins
 brew tap bazelbuild/tap
 brew tap-pin bazelbuild/tap
@@ -111,12 +108,29 @@ rm -f -r /Library/Caches/Homebrew/*
 # VIM Vuncle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-# Python3 Jupyter Notebook
+# Python3 and Modules
 python3 -m pip install --upgrade pip
-python3 -m pip install jupyter
 
-# Python2 Updates
+for mod in "${PIP3_MODS[@]}"
+do
+    #echo ${mod}
+    pip3 install ${mod}
+    if [ "$?" -ne "0" ]; then
+        echoerr "Failed to install ${mod}"
+    fi
+done
+
+# Python2 Updates and Modules
 pip install --upgrade pip setuptools
+
+for mod in "${PIP_MODS[@]}"
+do
+    #echo ${mod}
+    pip install ${mod}
+    if [ "$?" -ne "0" ]; then
+        echoerr "Failed to install ${mod}"
+    fi
+done
 
 # ###########################################################
 # Install dotFile configurations
