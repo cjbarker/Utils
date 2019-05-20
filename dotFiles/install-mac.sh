@@ -7,9 +7,10 @@
 declare -a BREW_CLI
 declare -a BREW_GUI
 
-BREW_CLI=(bash pkg-config libtool openssl git go python python3 node ruby hugo protobuf mono sqlite kubectl wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather clang cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf chromedriver mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format graphviz)
+BREW_CLI=(bash pkg-config libtool openssl git go python python3 node ruby hugo protobuf mono sqlite kubectl wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather clang-format llvm cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format graphviz)
 
-BREW_GUI=(java java8 vivaldi spectacle wireshark virtualbox zoomus skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk handbrake easyfind keybase google-backup-and-sync)
+BREW_GUI=(java vivaldi spectacle wireshark virtualbox zoomus skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk handbrake easyfind keybase google-backup-and-sync chromedriver)
+
 
 PIP_MODS=(jupyter unique utils enum enum34 pathlib typing vim-vint requests)
 
@@ -149,6 +150,14 @@ fi
 
 if [ -f .gitignore ]; then
     cp .gitignore ~/.
+fi
+
+if [ -f .vimrc ]; then
+    cp .vimrc ~/.
+fi
+
+if [ -d vim-colors ]; then
+    cp -R vim-colors ~/.vim/colors
 fi
 
 source ~/.profile
