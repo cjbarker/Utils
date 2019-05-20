@@ -160,6 +160,15 @@ if [ -d vim-colors ]; then
     cp -R vim-colors ~/.vim/colors
 fi
 
+if [ -d ~/.ssh ]; then
+    chmod 700 ~/.ssh
+    chmod 644 ~/.ssh/authorized_keys
+    chmod 644 ~/.ssh/known_hosts
+    chmod 644 ~/.ssh/config
+    chmod 600 ~/.ssh/*_rsa
+    chmod 644 ~/.ssh/*.pub
+fi
+
 source ~/.profile
 
 # ###########################################################
