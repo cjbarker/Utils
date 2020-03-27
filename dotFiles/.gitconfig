@@ -1,11 +1,12 @@
 [user]
     name = CJ Barker
-    email = cjbarker@gmail.com
+    email = cbarker@netflix.com
 
 [core]
     editor = vim
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore
+    pager = diff-so-fancy | less --tab=4 -RFX
 
 [web]
     browser = google-chrome
