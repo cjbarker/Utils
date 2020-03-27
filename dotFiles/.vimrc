@@ -20,6 +20,7 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'w0rp/ale'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
@@ -33,9 +34,12 @@ Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-surround'
+Plugin 'junegunn/gv.vim'
 Plugin 'tyru/open-browser.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'fatih/vim-go'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'ianks/vim-tsx'
 Plugin 'joegesualdo/jsdoc.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'godlygeek/tabular'
@@ -158,6 +162,8 @@ let g:syntastic_vim_vint_exe = 'LC_CTYPE=UTF-8 vint'
 let g:ale_linters = {
 \   'java': ['checkstyle', 'javac', 'google-java-format', 'pmd'],
 \   'javascript': ['eslint'],
+\   'typescript': ['tsserver', 'tslint'],
+\   'vue': ['eslint'],
 \   'python': ['pylint'],
 \   'c': ['cppcheck'],
 \   'vim': ['vint'],
@@ -180,6 +186,9 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'java': ['checkstyle', 'javac', 'google-java-format', 'pmd'],
 \   'javascript': ['eslint'],
+\   'typescript': ['prettier'],
+\   'vue': ['eslint'],
+\   'scss': ['prettier'],
 \   'python': ['pylint'],
 \   'c': ['cppcheck'],
 \   'vim': ['vint'],
