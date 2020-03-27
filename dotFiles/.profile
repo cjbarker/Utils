@@ -3,7 +3,7 @@ export PATH=/usr/sbin:/usr/local/sbin:/usr/local/bin:$PATH:/sbin:
 # ----------------------------
 # ALIAS
 # ----------------------------
-alias weather='ansiweather -l Seattle,WA -u imperial'
+alias weather='ansiweather -l "Los Gatos,US" -u imperial -s true -d true'
 alias f='thefuck'
 alias cp='cp -iv'
 alias mv='mv -iv'
@@ -14,8 +14,10 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias c='clear'
 alias hclear='history -c; clear'
-alias ll='ls -l -a -G -F -h'
-#alias ll='ls -laG'
+#alias ll='ls -l -a -G -F -h'
+#alias ls='ls -lahF'
+alias ls='exa'
+alias ll='exa -lahF'
 alias vi='vim'
 alias ip='/sbin/ifconfig'
 alias tidy_xml='tidy -utf8 -xml -w 255 -i -c -q -asxml'
@@ -35,7 +37,7 @@ alias gc='git commit -m '
 alias gp='git push'
 alias gs='git status'
 alias gd='git diff'
-
+alias cat='bat'
 
 # get current branch in git repo
 function parse_git_branch() {
@@ -109,6 +111,9 @@ export BLOCKSIZE=1K
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+# colorize man page
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 #export M2_HOME=/usr/local/Cellar/maven/3.5.0/
 export PATH=$M2:$PATH
 export GOPATH=$HOME/go
@@ -119,12 +124,11 @@ export ANDROID_HOME=/usr/local/share/android-sdk/
 export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
 export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
 
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java12='export JAVA_HOME=$JAVA_12_HOME'
+alias java8='export JAVA_HOME=$JAVA_8_HOME; export PATH=$JAVA_HOME/bin:$PATH'
+alias java12='export JAVA_HOME=$JAVA_12_HOME; export PATH=$JAVA_HOME/bin:$PATH'
 
-#default java8
-export JAVA_HOME=$JAVA_12_HOME
-export PATH=$JAVA_12_HOME/bin:$PATH
+#default java12
+java12
 
 if [ $(id -u) -eq 0 ];
 then
@@ -132,4 +136,3 @@ then
 else
     export PS1="\u@\h ./\W\`parse_git_branch\`\\$ "
 fi
-
