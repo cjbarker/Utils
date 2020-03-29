@@ -1,9 +1,6 @@
 #!/bin/sh
 
 # update repos
-add-apt-repository ppa:masterminds/glide
-add-apt-repository ppa:gophers/archive
-
 apt update
 apt -y upgrade
 apt dist-upgrade
@@ -22,7 +19,6 @@ apt install -y curl wget
 apt install -y git
 apt install -y git-flow
 apt install -y golang-1.10-go
-apt install -y glide
 apt install -y tree
 apt install -y bash-completion
 apt install -y htop
@@ -60,26 +56,31 @@ apt install -y gnome-online-accounts
 apt install -y xfonts-terminus
 apt install -y default-jre
 apt install -y default-jdk
-add-apt-repository ppa:webupd8team/java
+apt install -y texlive-full
+apt install -y texmaker
 apt-get update
 apt-get install oracle-java8-installer
 
 # NodeJS
 apt install -y python-software-properties
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-apt install -y nodejs nodejs-legacy npm
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+apt install -y nodejs npm
+
+# NPM Packages
+npm install -g typescript
+npm install -g react
+npm install -g react-native
+npm install -g react-native-cli
+npm install -g aws-sdk
+npm install -g jshint
+
+# Diff-so-fancy
+wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy -O /usr/local/bin/.
+chmod 755 /usr/local/bin/diff-so-fancy
 
 # NTP
 apt install -y ntpdate
 ntpdate -s time.nist.gov
-
-# Google Drive
-add-apt-repository ppa:alessandro-strada/ppa
-apt update
-apt install -y google-drive-ocamlfuse
-google-drive-ocamlfuse
-mkdir -p ~/google-drive
-google-drive-ocamlfuse ~/google-drive
 
 # skype
 dpkg --add-architecture i386
