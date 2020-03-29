@@ -10,16 +10,16 @@ if [ -f ~/powerline-shell.py ]; then
     fi
 else
     # setup basic prompt
-    if [ $(id -u) -eq 0 ]; then 
+    if [ $(id -u) -eq 0 ]; then
         # you are root, set red colour prompt
         PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w # \\[$(tput sgr0)\\]"
-    else 
+    else
         # normal
         PS1="[\\u@\\h:\\w]$ "
     fi
 fi
 
-alias_file=~/.alias
+alias_file=~/.bash_aliases
 
 if [ -f $alias_file ]; then
     source $alias_file

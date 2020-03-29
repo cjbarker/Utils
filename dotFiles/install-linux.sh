@@ -22,6 +22,7 @@ apt install -y git-flow
 apt install -y golang-1.10-go
 apt install -y tree
 apt install -y bash-completion
+apt install -y tidy
 apt install -y htop
 apt install -y httpstat
 apt install -y nmap
