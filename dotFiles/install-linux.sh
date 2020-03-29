@@ -62,6 +62,16 @@ apt install -y texmaker
 apt-get update
 apt-get install oracle-java8-installer
 
+# Exa
+apt install -y libgit2-24 libgit2-dev cmake
+# install rust
+curl https://sh.rustup.rs -sSf | sh
+# install exa
+wget -c https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
+unzip exa-linux-*.zip
+mv exa-linux-x86_64 /usr/local/bin/exa
+rm -rf exa-linux-*.zip
+
 # NodeJS
 apt install -y python-software-properties
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
