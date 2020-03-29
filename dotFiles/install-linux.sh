@@ -9,6 +9,7 @@ apt install -y linux-headers-$(uname -r)
 apt install -y mono-complete
 apt install -y vim
 apt install -y glances
+apt install -y xclip
 apt install -y jq
 apt install -y whois
 apt install -y make
