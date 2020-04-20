@@ -1,7 +1,7 @@
 export PATH=/usr/sbin:/usr/local/sbin:/usr/local/bin:$PATH:/sbin:
 
 if [ -f .bash_aliases ]; then
-    cp .bash_aliases ~/.
+    source .bash_aliases
 fi
 
 # get current branch in git repo
@@ -86,14 +86,14 @@ export PATH=$GOPATH/bin:$PATH
 
 export ANDROID_HOME=/usr/local/share/android-sdk/
 
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
+#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_14_HOME=$(/usr/libexec/java_home -v14)
 
-alias java8='export JAVA_HOME=$JAVA_8_HOME; export PATH=$JAVA_HOME/bin:$PATH'
-alias java12='export JAVA_HOME=$JAVA_12_HOME; export PATH=$JAVA_HOME/bin:$PATH'
+#alias java8='export JAVA_HOME=$JAVA_8_HOME; export PATH=$JAVA_HOME/bin:$PATH'
+alias java14='export JAVA_HOME=$JAVA_12_HOME; export PATH=$JAVA_HOME/bin:$PATH'
 
-#default java12
-java12
+#default java14
+java14
 
 if [ $(id -u) -eq 0 ];
 then
