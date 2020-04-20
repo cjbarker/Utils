@@ -13,7 +13,7 @@ BREW_GUI=(java spectacle wireshark virtualbox skype android-studio eclipse-java 
 
 PIP_MODS=(jupyter unique utils enum enum34 pathlib typing vim-vint requests)
 
-PIP3_MODS=(jupyter requests numpy scipy matplotlib BeautifulSoup scrapy scapy nose2 nltk prettytable progressbar uuid docopt psycopg2 pysqlite)
+PIP3_MODS=(jupyter requests numpy scipy matplotlib BeautifulSoup4 scrapy scapy nose2 nltk prettytable progressbar uuid docopt psycopg2 pysqlite)
 
 function echoerr {
     echo "$@" 1>&2
@@ -183,7 +183,7 @@ if [ -d ~/.ssh ]; then
     chown -R ${USER} ~/.ssh/
 
     # import certs
-    eval "$(ssh-agent -s)" 
+    eval "$(ssh-agent -s)"
     ssh-add -K ~/.ssh/*_rsa
 fi
 
