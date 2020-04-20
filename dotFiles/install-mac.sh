@@ -46,7 +46,7 @@ sudo xcodebuild -license accept
 rc=`cmd_exists brew`
 if [ "$rc" -ne "0" ]; then
     echo -e 'Installing Brew'
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    sudo -u ${USER} bash -c /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Update Brew
