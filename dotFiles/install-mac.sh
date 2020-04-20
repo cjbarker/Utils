@@ -32,6 +32,11 @@ function cmd_exists
     fi
 }
 
+if [ $(id -u) = 0 ]; then
+   echo "Do not run as root!!!!"
+   exit 1
+fi
+
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
