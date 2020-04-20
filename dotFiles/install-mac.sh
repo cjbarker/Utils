@@ -46,7 +46,7 @@ sudo xcodebuild -license accept
 rc=`cmd_exists brew`
 if [ "$rc" -ne "0" ]; then
     echo -e 'Installing Brew'
-    sudo -u ${USER} bash -c /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    sudo -u cj bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 # Update Brew
@@ -175,7 +175,7 @@ if [ -d ~/.ssh ]; then
     chmod 644 ~/.ssh/config
     chmod 600 ~/.ssh/*_rsa
     chmod 644 ~/.ssh/*.pub
-    chown -R ${USER} ~/.ssh/
+    chown -R cj ~/.ssh/
 
     # import certs
     eval "$(ssh-agent -s)" 
