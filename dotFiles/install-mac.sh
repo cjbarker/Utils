@@ -9,8 +9,7 @@ declare -a BREW_GUI
 
 BREW_CLI=(bash pkg-config libtool openssl git go python python3 node ruby hugo protobuf mono sqlite kubectl wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather clang-format llvm cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format graphviz diff-so-fancy languagetool bat exa)
 
-BREW_GUI=(java vivaldi spectacle wireshark virtualbox zoomus skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk handbrake easyfind keybase google-backup-and-sync chromedriver font-inconsolata)
-
+BREW_GUI=(java spectacle wireshark virtualbox skype android-studio eclipse-java slack visual-studio-code dash gimp android-sdk handbrake easyfind keybase google-backup-and-sync font-inconsolata)
 
 PIP_MODS=(jupyter unique utils enum enum34 pathlib typing vim-vint requests)
 
@@ -168,6 +167,11 @@ if [ -d ~/.ssh ]; then
     chmod 644 ~/.ssh/config
     chmod 600 ~/.ssh/*_rsa
     chmod 644 ~/.ssh/*.pub
+    chown -R ${USER} ~/.ssh/
+
+    # import certs
+    eval "$(ssh-agent -s)" 
+    ssh-add -K ~/.ssh/*_rsa
 fi
 
 source ~/.profile
