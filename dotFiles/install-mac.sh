@@ -136,6 +136,10 @@ done
 # ###########################################################
 # Install dotFile configurations
 # ###########################################################
+if [ -f .bash_aliases ]; then
+    cp .bash_aliases ~/.
+fi
+
 if [ -f .bashrc ]; then
     cp .bashrc ~/.
 fi
@@ -158,6 +162,10 @@ fi
 
 if [ -d vim-colors ]; then
     cp -R vim-colors ~/.vim/colors
+fi
+
+if [ -f .prettierc ]; then
+    cp .prettierc ~/.
 fi
 
 if [ -d ~/.ssh ]; then

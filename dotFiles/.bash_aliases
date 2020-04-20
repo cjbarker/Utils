@@ -1,8 +1,8 @@
 # ----------------------------
 # ALIAS
 # ----------------------------
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+#alias pbcopy='xclip -selection clipboard'
+#alias pbpaste='xclip -selection clipboard -o'
 alias weather='ansiweather -l "Los Gatos,US" -u imperial -s true -d true'
 alias f='thefuck'
 alias cp='cp -iv'
