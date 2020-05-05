@@ -95,6 +95,9 @@ alias java14='export JAVA_HOME=$JAVA_12_HOME; export PATH=$JAVA_HOME/bin:$PATH'
 #default java14
 java14
 
+# disable shell warning when not using ZSH on Mac
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 if [ $(id -u) -eq 0 ];
 then
     export PS1="\[\e[41m\]\u\[\e[m\]@\h \W# "
