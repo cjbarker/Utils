@@ -90,7 +90,7 @@ export ANDROID_HOME=/usr/local/share/android-sdk/
 export JAVA_14_HOME=$(/usr/libexec/java_home -v14)
 
 #alias java8='export JAVA_HOME=$JAVA_8_HOME; export PATH=$JAVA_HOME/bin:$PATH'
-alias java14='export JAVA_HOME=$JAVA_12_HOME; export PATH=$JAVA_HOME/bin:$PATH'
+alias java14='export JAVA_HOME=$JAVA_14_HOME; export PATH=$JAVA_HOME/bin:$PATH'
 
 #default java14
 java14
