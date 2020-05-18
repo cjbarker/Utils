@@ -301,5 +301,8 @@ Switch ($args[0])
     }
 }
 
+# Enure environment refreshed
+refreshenv
+
 Exit(0)
 
