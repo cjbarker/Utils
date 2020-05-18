@@ -226,6 +226,51 @@ function Install-Chocolatey {
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
+function Test-IsAdmin {
+    ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+}
+
+function Cleanup-Config {
+    # Remove all icons from desktop
+    if ((Test-IsAdmin)) {
+        Remove-Item C:\Users\*\Desktop\*lnk -Force
+    }
+
+    # Config File Explorer Settings
+    $key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+    Set-ItemProperty $key Hidden 1
+    Set-ItemProperty $key HideFileExt 0
+    Set-ItemProperty $key ShowSuperHidden 0
+    Set-ItemProperty $key TaskbarGlomLevel 2
+    Set-ItemProperty $key UseSharingWizard 0
+    Set-ItemProperty $key TaskbarSmallIcons 1
+
+    # Privacy: Let apps use my advertising ID: Disable
+    Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo -Name Enabled -Type DWord -Value 0
+
+    # Activity Tracking: Disable
+    @('EnableActivityFeed','PublishUserActivities','UploadUserActivities') |% { Set-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\System -Name $_ -Type DWord -Value 0 }
+
+    # Disable Telemetry (requires a reboot to take effect)
+    Set-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection -Name AllowTelemetry -Type DWord -Value 0
+Get-Service DiagTrack,Dmwappushservice | Stop-Service | Set-Service -StartupType Disabled
+
+    # Change Explorer home screen back to "This PC"
+    Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name LaunchTo -Type DWord -Value 1
+
+    # Enable Firewall
+    Set-NetFirewallProfile -Profile * -Enabled True
+
+    # Disable Autoplay
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers" -Name "DisableAutoplay" -Type DWord -Value 1
+
+    # Change default Explorer view to "Computer"
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -Type DWord -Value 1
+
+    # Restart Explorer to take affect
+    Stop-Process -processname explorer
+}
+
 function Usage {
     Write-Host './install-windows.ps1 [all|cli|dev|vm|sdr|apps|msft'
     Write-Host ''
@@ -235,6 +280,7 @@ function Usage {
     Write-Host '  sdr:  install software defined radio software'
     Write-Host '  apps: install GUI application software'
     Write-Host '  msft: install Microsoft related software/updates'
+    Write-Host '  cfg:  apply clean-up and registry configurations settings'
     Write-Host ''
 }
 
@@ -259,6 +305,7 @@ Catch {
 If ($($args.Count) -eq 0 -OR $args[0] -eq 'all') {
     Write-Host 'Install All'
     Install-All
+    Cleanup-Config
     Print-Footer
     Exit(0)
 }
@@ -290,6 +337,10 @@ Switch ($args[0])
         Write-Host 'Install MSFT Related'
         Install-MSFT-Related
     }
+    "cfg" {
+        Write-Host 'Cleanup & Config'
+        Cleanup-Config
+    }
     "help" {
         Clear-Host
         Usage
@@ -302,7 +353,7 @@ Switch ($args[0])
     }
 }
 
-# Enure environment refreshed
+# Ensure environment refreshed
 refreshenv
 
 Exit(0)
