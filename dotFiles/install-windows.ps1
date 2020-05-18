@@ -31,6 +31,7 @@ function Install-Dev-Tools {
 
     # Language/Runtime
     choco install python3 -y
+    choco install python2 -y
     choco install golang -y
     choco install ruby -y
     choco install nodejs -y
