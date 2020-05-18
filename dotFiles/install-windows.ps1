@@ -147,6 +147,7 @@ function Install-Apps {
     choco install imagemagick -y
     choco install imagemagick.app -y
     choco install balsamiqmockups3 -y
+    choco install drawio -y
     choco install spotify --ignore-checksums -y
     choco install steam -y
     choco install sumatrapdf -y
