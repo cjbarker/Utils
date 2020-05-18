@@ -44,6 +44,7 @@ function Install-Dev-Tools {
     # Apps - IDE
     choco install vim -y
     choco install vscode -y
+    choco install xamarin-studio -y
     choco install eclipse -y
     choco install springtoolsuite -y # add-on to Eclipse
     choco install arduino -y
