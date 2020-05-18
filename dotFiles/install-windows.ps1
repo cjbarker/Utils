@@ -76,7 +76,7 @@ function Install-CLI-Tools {
     choco install git.install -y
     choco install gitextensions -y
     choco install youtube-dl -y
-    choco install gcloudsdk -y
+    choco install gcloudsdk --ignore-checksums -y
     choco install awscli -y
     choco install awstools.powershell -y
     choco install azure-cli -y
