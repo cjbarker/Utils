@@ -8,7 +8,7 @@
 #
 # Notee: May need to first run Powershell as admin & set exec policy
 #
-# C:\> Set-ExecutionPolicy RemoteSigned
+# C:\> Set-ExecutionPolicy unrestricted
 #
 # ######################################################
 
