@@ -293,13 +293,10 @@ function Usage {
 Print-Header
 
 # Install Chocolatey if applicable
-try {
-    if(Get-Command choco) {
-        Write-Host 'choco exists - upgrade'
-        choco upgrade chocolatey
-    }
-}
-Catch {
+if(Get-Command choco -ErrorAction SilentlyContinue) {
+    Write-Host 'choco exists - upgrade'
+    choco upgrade chocolatey
+} else {
     Install-Chocolatey
 }
 
