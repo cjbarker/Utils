@@ -59,8 +59,8 @@ function Install-Dev-Tools {
     choco install protoc -y
     choco install jq -y
     choco install docfx -y
-    choco install doxygen.install
-    choco install msys2 -y
+    choco install doxygen.install -y
+    choco install msys2-installer -y
     choco install mingw -y
     choco install make -y
     choco install cmake.install -y
@@ -278,6 +278,7 @@ function Usage {
     Write-Host ''
     Write-Host '  all:  install all software'
     Write-Host '  cli:  install command-line software'
+    Write-Host '  dev:  install developer tools'
     Write-Host '  vm:   install virtual machine related software'
     Write-Host '  sdr:  install software defined radio software'
     Write-Host '  apps: install GUI application software'
