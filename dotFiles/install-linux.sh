@@ -60,6 +60,7 @@ apt install -y default-jre
 apt install -y default-jdk
 apt install -y texlive-full
 apt install -y texmaker
+apt install -y libssl-dev
 apt-get update
 apt-get install oracle-java8-installer
 
