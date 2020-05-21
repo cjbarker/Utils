@@ -106,6 +106,8 @@ git add .gitignore
 git commit -m "Initial creation via ${0}"
 git remote add origin "${url}"
 git push -u origin master
+cd ..
+rm -rf ${repo}
 
 # get GitLab Project ID
 projectId=`curl -s https://gitlab.com/api/v4/users/${username}/projects | jq -r '.[] | .id, .name' | grep -B 1 "${repo}" | grep -v "${repo}"`
