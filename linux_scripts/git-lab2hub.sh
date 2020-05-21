@@ -18,6 +18,9 @@
 # Required built-ins
 declare -a CMDS
 CMDS[0]='git'
+CMDS[1]='cat'
+CMDS[2]='touch'
+CMDS[3]='sed'
 
 function echoerr {
     echo "$@" 1>&2
@@ -70,10 +73,31 @@ if [ ! -f "${2}" ]; then
     exit 3
 fi
 
-repo=`cat ${1} | sed "s/.git//g"`
+repo=`echo ${1} | sed "s/.git//g"`
 token=`cat ${2}`
+username="cjbarker" # TODO take cmdline arg
+url="https://${username}:${token}@github.com/${username}/${repo}.git"
 
-# create GH repo
 #echo ${repo}
 #echo ${token}
+#echo ${url}
 
+if [ ! -d "${repo}" ]; then
+    mkdir -p ${repo}
+fi
+
+# create GH repo via API
+curl -u "${username}:${token}" https://api.github.com/user/repos -d "{\"name\":\"${repo}\"}"
+
+# create actual repo
+cd ${repo}
+git init
+touch .gitignore
+git add .gitignore
+git commit -m "Initial creation via ${0}"
+git remote add origin "${url}"
+git push -u origin master
+
+# configure GL repo for push mirror to GH
+
+exit 0
