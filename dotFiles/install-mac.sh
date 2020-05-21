@@ -9,12 +9,11 @@ declare -a BREW_GUI
 
 BREW_CLI=(bash pkg-config libtool openssl git go python python3 node ruby hugo protobuf mono sqlite kubectl wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather clang-format llvm cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format graphviz diff-so-fancy languagetool bat exa)
 
-BREW_GUI=(java vivaldi spectacle wireshark virtualbox zoomus skype android-studio eclipse-java slack visual-studio-code dash gimp flux spectacle android-sdk handbrake easyfind keybase google-backup-and-sync chromedriver font-inconsolata)
-
+BREW_GUI=(java spectacle wireshark virtualbox skype android-studio eclipse-java visual-studio-code dash gimp android-sdk handbrake easyfind keybase google-backup-and-sync font-inconsolata powershell)
 
 PIP_MODS=(jupyter unique utils enum enum34 pathlib typing vim-vint requests)
 
-PIP3_MODS=(jupyter requests numpy scipy matplotlib BeautifulSoup scrapy scapy nose2 nltk prettytable progressbar uuid docopt psycopg2 pysqlite)
+PIP3_MODS=(jupyter requests numpy scipy matplotlib BeautifulSoup4 scrapy scapy nose2 nltk prettytable progressbar uuid docopt psycopg2 pysqlite)
 
 function echoerr {
     echo "$@" 1>&2
@@ -33,6 +32,11 @@ function cmd_exists
     fi
 }
 
+if [ $(id -u) = 0 ]; then
+   echo "Do not run as root!!!!"
+   exit 1
+fi
+
 # ###########################################################
 # Install non-brew various tools (PRE-BREW Installs)
 # ###########################################################
@@ -47,7 +51,7 @@ sudo xcodebuild -license accept
 rc=`cmd_exists brew`
 if [ "$rc" -ne "0" ]; then
     echo -e 'Installing Brew'
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 # Update Brew
@@ -137,6 +141,10 @@ done
 # ###########################################################
 # Install dotFile configurations
 # ###########################################################
+if [ -f .bash_aliases ]; then
+    cp .bash_aliases ~/.
+fi
+
 if [ -f .bashrc ]; then
     cp .bashrc ~/.
 fi
@@ -161,6 +169,10 @@ if [ -d vim-colors ]; then
     cp -R vim-colors ~/.vim/colors
 fi
 
+if [ -f .prettierc ]; then
+    cp .prettierc ~/.
+fi
+
 if [ -d ~/.ssh ]; then
     chmod 700 ~/.ssh
     chmod 644 ~/.ssh/authorized_keys
@@ -168,6 +180,11 @@ if [ -d ~/.ssh ]; then
     chmod 644 ~/.ssh/config
     chmod 600 ~/.ssh/*_rsa
     chmod 644 ~/.ssh/*.pub
+    chown -R ${USER} ~/.ssh/
+
+    # import certs
+    eval "$(ssh-agent -s)"
+    ssh-add -K ~/.ssh/*_rsa
 fi
 
 source ~/.profile

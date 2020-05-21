@@ -1,43 +1,8 @@
 export PATH=/usr/sbin:/usr/local/sbin:/usr/local/bin:$PATH:/sbin:
 
-# ----------------------------
-# ALIAS
-# ----------------------------
-alias weather='ansiweather -l "Los Gatos,US" -u imperial -s true -d true'
-alias f='thefuck'
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias mkdir='mkdir -pv'
-alias qfind="find . -name "
-alias ..='cd ..'
-alias ...='cd ../../'
-alias ....='cd ../../../'
-alias c='clear'
-alias hclear='history -c; clear'
-#alias ll='ls -l -a -G -F -h'
-#alias ls='ls -lahF'
-alias ls='exa'
-alias ll='exa -lahF'
-alias vi='vim'
-alias ip='/sbin/ifconfig'
-alias tidy_xml='tidy -utf8 -xml -w 255 -i -c -q -asxml'
-alias df='df -h'
-alias du='du -ch'
-alias diskspace="du -S | sort -n -r |more"
-alias chomp="tr -d'\n'"
-alias grep='grep --color=auto'
-alias ping='ping -c 5'
-alias reboot='sudo /sbin/reboot'
-alias shutdown='sudo /sbin/shutdown -t now'
-alias prettyjson='python -m json.tool'
-alias db_mysql='mysql -h localhost -u root'
-alias tl='tldr'
-alias ga='git add -A'
-alias gc='git commit -m '
-alias gp='git push'
-alias gs='git status'
-alias gd='git diff'
-alias cat='bat'
+if [ -f .bash_aliases ]; then
+    source .bash_aliases
+fi
 
 # get current branch in git repo
 function parse_git_branch() {
@@ -121,14 +86,17 @@ export PATH=$GOPATH/bin:$PATH
 
 export ANDROID_HOME=/usr/local/share/android-sdk/
 
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
+#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_14_HOME=$(/usr/libexec/java_home -v14)
 
-alias java8='export JAVA_HOME=$JAVA_8_HOME; export PATH=$JAVA_HOME/bin:$PATH'
-alias java12='export JAVA_HOME=$JAVA_12_HOME; export PATH=$JAVA_HOME/bin:$PATH'
+#alias java8='export JAVA_HOME=$JAVA_8_HOME; export PATH=$JAVA_HOME/bin:$PATH'
+alias java14='export JAVA_HOME=$JAVA_14_HOME; export PATH=$JAVA_HOME/bin:$PATH'
 
-#default java12
-java12
+#default java14
+java14
+
+# disable shell warning when not using ZSH on Mac
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 if [ $(id -u) -eq 0 ];
 then
