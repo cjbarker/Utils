@@ -30,6 +30,12 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'majutsushi/tagbar'
 Plugin 'mhinz/vim-signify'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'lervag/vimtex'
+Plugin 'mechatroner/rainbow_csv'
+Plugin 'ap/vim-css-color'
+Plugin 'luochen1990/rainbow'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sleuth'
@@ -37,12 +43,14 @@ Plugin 'tpope/vim-surround'
 Plugin 'junegunn/gv.vim'
 Plugin 'tyru/open-browser.vim'
 Plugin 'vim-scripts/a.vim'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'fatih/vim-go'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'ianks/vim-tsx'
 Plugin 'joegesualdo/jsdoc.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'rhysd/vim-grammarous'       " GrammarCheck using LanguageTool
 
 " Color Schemes
 Plugin 'junegunn/seoul256.vim'
@@ -90,23 +98,35 @@ set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set wrap
 set linebreak
+set nolist
 set textwidth=120     " wrap lines after chars
 
 " UI Config
 set number      " enable number lines
 set showcmd     " show command bar
 set cursorline  " horizontal line where cursor is
+set wildmode=longest,list " tab completion for files/buffers
 set wildmenu    " visual autocomplete for command menu
 set lazyredraw  " redraw ony when we need to
 set showmatch   " highly matching [{()}]
 set ruler       " always show current position
+set mouse+=a " enable mouse mode (scrolling, selection, etc)
+if match($TERM, 'screen')==1
+    set ttymouse=xterm2 " tmux knows the extended mouse mode
+endif
 
 " Searching
 set ignorecase  " ignore case when searching
+set smartcase   " use case if any caps used
 set incsearch   " search as characters are entered
 set hlsearch    " highlight matches
 nnoremap <leader><space> :nohlsearch<CR>    " turn off search highly
+
+" Undo
+set undofile    " Maintain undo history between sessions
+set undodir=~/.vim/undodir
 
 " Folding
 set foldenable  " enable folding
@@ -209,3 +229,18 @@ let g:ale_fixers = {
 let g:ale_lint_on_text_changed = 0
 " Set this variable to 1 to fix files when you save them.
 "let g:ale_fix_on_save = 1
+
+" Vim Markdown
+let g:markdown_fenced_languages = [
+    \ 'bash=sh',
+    \ 'c',
+    \ 'coffee',
+    \ 'erb=eruby',
+    \ 'javascript',
+    \ 'json',
+    \ 'perl',
+    \ 'python',
+    \ 'ruby',
+    \ 'yaml',
+    \ 'go',
+\]
