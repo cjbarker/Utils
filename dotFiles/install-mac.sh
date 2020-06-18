@@ -7,7 +7,7 @@
 declare -a BREW_CLI
 declare -a BREW_GUI
 
-BREW_CLI=(bash pkg-config libtool openssl git go python python3 node ruby hugo protobuf mono sqlite kubectl wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather clang-format llvm cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format graphviz diff-so-fancy languagetool bat exa)
+BREW_CLI=(bash pkg-config libtool openssl git go python python3 node ruby hugo protobuf mono sqlite kubectl wget fzf htop tree nmap bash-completion dos2unix geoip git-flow unrar tmux ack ffmpeg imagemagick watch speedtest_cli ansiweather clang-format llvm cmake maven ant gradle ttygif bro tldr thefuck httpstat terraform rsync opencv tidy-html5 p7zip youtube-dl coreutils awscli pidof autojump cloc pstree automake autoconf mitmproxy lzip sslmate cppcheck tflint pandoc prettier jsonlint alexjs checkstyle pmd google-java-format graphviz diff-so-fancy languagetool bat exa Shellcheck pylint)
 
 BREW_GUI=(java spectacle wireshark virtualbox skype android-studio eclipse-java visual-studio-code dash gimp android-sdk handbrake easyfind keybase google-backup-and-sync font-inconsolata powershell)
 
@@ -71,6 +71,7 @@ brew tap homebrew/cask-fonts
 sudo gem install cocoapods
 sudo gem install fastlane
 sudo gem install jazzy
+sudo gem install mdl
 
 # Install bazel taps and bins
 brew tap bazelbuild/tap
