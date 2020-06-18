@@ -1,5 +1,6 @@
-# ############################################
 #!/bin/bash
+
+# ############################################
 #
 # Mac OSX dotFile for setting up environment
 # ############################################
@@ -22,7 +23,7 @@ function echoerr {
 function cmd_exists
 {
     local cmd=$1
-    local result=`which $cmd`
+    local result=$(which $cmd)
 
     if [ -n "$result" ]; then
         echo 0
@@ -48,7 +49,7 @@ sudo xcodebuild -license accept
 # ###########################################################
 # BREW INSTALLS
 # ###########################################################
-rc=`cmd_exists brew`
+rc=$(cmd_exists brew)
 if [ "$rc" -ne "0" ]; then
     echo -e 'Installing Brew'
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -121,7 +122,7 @@ python3 -m pip install --upgrade pip
 for mod in "${PIP3_MODS[@]}"
 do
     #echo ${mod}
-    pip3 install ${mod}
+    pip3 install "${mod}"
     if [ "$?" -ne "0" ]; then
         echoerr "Failed to install ${mod}"
     fi
@@ -133,7 +134,7 @@ pip install --upgrade pip setuptools
 for mod in "${PIP_MODS[@]}"
 do
     #echo ${mod}
-    pip install ${mod}
+    pip install "${mod}"
     if [ "$?" -ne "0" ]; then
         echoerr "Failed to install ${mod}"
     fi
