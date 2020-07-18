@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # #####################################################
 # Applies Git pre-commit hook to link appropriate file
 # when applicable: Markdown, JavaScript, Go, Python,
@@ -44,6 +43,19 @@ function cmd_exists {
     fi
 }
 
+function lint {
+    local file=$1
+    local extension=`echo ${file} | awk -F"." '{print $NF}'`
+    echo "Linting File ${file} of extensions ${extension}"
+
+    case "${extension}" in
+      sh) echo "Shell extension"
+        ;;
+      *) echoerr "Invalid file extension ${extension}"
+        ;;
+    esac
+}
+
 # ###########################################################
 # M A I N   L O G I C
 # ###########################################################
@@ -53,7 +65,7 @@ if [ $(id -u) = 0 ]; then
    exit 2
 fi
 
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E ".sh|.py\{0,1\}$")
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E ".sh|.py|.js|.yaml|.json|.go|.md\{0,1\}$")
 
 if [[ "$STAGED_FILES" = "" ]]; then
   echo "No files staged for commit"
@@ -84,10 +96,9 @@ if [[ "${IS_MAC}" == true ]]; then
 fi
 # TODO prereq linux install
 
-# TODO loop through tools and install as necessary
+# Check Linters installed
 for i in "${TOOLS_TO_INSTALL[@]}"
 do
-  #echo $i
   rc=$(cmd_exists $i)
   if [ "$rc" -ne "0" ]; then
     echoerr "Missing linter - please install ${i}"
@@ -97,6 +108,11 @@ done
 
 PASS=true
 
+for FILE in $STAGED_FILES
+do
+  lint ${FILE}
+done
+
 echo "\nValidating Javascript:\n"
 
 # Check for eslint
@@ -105,18 +121,6 @@ if [[ "$?" == 1 ]]; then
   echo "\t\033[41mPlease install ESlint\033[0m"
   exit 1
 fi
-
-for FILE in $STAGED_FILES
-do
-  eslint "$FILE"
-
-  if [[ "$?" == 0 ]]; then
-    echo "\t\033[32mESLint Passed: $FILE\033[0m"
-  else
-    echo "\t\033[41mESLint Failed: $FILE\033[0m"
-    PASS=false
-  fi
-done
 
 echo "\nJavascript validation completed!\n"
 
