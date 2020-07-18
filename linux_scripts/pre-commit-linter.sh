@@ -83,6 +83,12 @@ function lint {
           pass=false
         fi
         ;;
+      json) echo "Linting: JSON file"
+        jsonlint ${file}
+        if [ $? -ne 0 ]; then
+          pass=false
+        fi
+        ;;
       *) echoerr "Invalid file extension ${extension}"
         exit 5
     esac
