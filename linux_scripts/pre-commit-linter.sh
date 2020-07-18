@@ -48,14 +48,21 @@ function lint {
     # extract first directory out of path
     local file=`echo ${full_file} | sed 's,^[^/]*/,,'`
     local extension=`echo ${file} | awk -F"." '{print $NF}'`
-    echo "Linting File ${full_file} of extension ${extension}"
+    local pass=true
+    echo "File to lint ${full_file} of extension ${extension}"
 
     # invoke corresponding linter
     case "${extension}" in
-      sh) echo "Shell extension"
+      sh) echo "Linting: SH Script"
         shellcheck ${file}
         if [ $? -ne 0 ]; then
-          exit 3
+          pass=false
+        fi
+        ;;
+      go) echo "Linting: GO file"
+        golint ${file}
+        if [ $? -ne 0 ]; then
+          pass=false
         fi
         ;;
       *) echoerr "Invalid file extension ${extension}"
