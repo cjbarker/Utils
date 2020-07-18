@@ -128,18 +128,6 @@ else
   exit 1
 fi
 
-# Prereq installation for Mac
-if [[ "${IS_MAC}" == true ]]; then
-  rc=$(cmd_exists brew)
-  if [ "$rc" -ne "0" ]; then
-      echo -e 'Installing Brew'
-      bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-      brew update
-      brew upgrade
-  fi
-fi
-# TODO prereq linux install
-
 # Check Linters installed
 for i in "${TOOLS_TO_INSTALL[@]}"
 do
