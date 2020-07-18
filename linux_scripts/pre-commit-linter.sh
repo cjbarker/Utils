@@ -65,6 +65,12 @@ function lint {
           pass=false
         fi
         ;;
+      py) echo "Linting: Python file"
+        pylint ${file}
+        if [ $? -ne 0 ]; then
+          pass=false
+        fi
+        ;;
       md) echo "Linting: Markdown file"
         mdl ${file}
         if [ $? -ne 0 ]; then
