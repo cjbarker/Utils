@@ -53,7 +53,7 @@ function lint {
 
     # invoke corresponding linter
     case "${extension}" in
-      sh) echo "Linting: SH Script"
+      sh) echo "Linting: Shell Script"
         shellcheck ${file}
         if [ $? -ne 0 ]; then
           pass=false
@@ -61,6 +61,12 @@ function lint {
         ;;
       go) echo "Linting: GO file"
         golint ${file}
+        if [ $? -ne 0 ]; then
+          pass=false
+        fi
+        ;;
+      md) echo "Linting: Markdown file"
+        mdl ${file}
         if [ $? -ne 0 ]; then
           pass=false
         fi
@@ -79,7 +85,7 @@ if [ $(id -u) = 0 ]; then
    exit 2
 fi
 
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E ".sh|.py|.js|.yaml|.json|.go|.md\{0,1\}$")
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E ".sh|.py|.js|.yaml|.json|.go|.md$")
 
 if [[ "$STAGED_FILES" = "" ]]; then
   echo "No files staged for commit"
