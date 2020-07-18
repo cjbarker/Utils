@@ -44,15 +44,22 @@ function cmd_exists {
 }
 
 function lint {
-    local file=$1
+    local full_file=$1
+    # extract first directory out of path
+    local file=`echo ${full_file} | sed 's,^[^/]*/,,'`
     local extension=`echo ${file} | awk -F"." '{print $NF}'`
-    echo "Linting File ${file} of extensions ${extension}"
+    echo "Linting File ${full_file} of extension ${extension}"
 
+    # invoke corresponding linter
     case "${extension}" in
       sh) echo "Shell extension"
+        shellcheck ${file}
+        if [ $? -ne 0 ]; then
+          exit 3
+        fi
         ;;
       *) echoerr "Invalid file extension ${extension}"
-        ;;
+        exit 5
     esac
 }
 
@@ -106,29 +113,11 @@ do
   fi
 done
 
-PASS=true
-
+# Invoke linter, error msg, and exit when/where applicable
 for FILE in $STAGED_FILES
 do
   lint ${FILE}
 done
 
-echo "\nValidating Javascript:\n"
-
-# Check for eslint
-which eslint &> /dev/null
-if [[ "$?" == 1 ]]; then
-  echo "\t\033[41mPlease install ESlint\033[0m"
-  exit 1
-fi
-
-echo "\nJavascript validation completed!\n"
-
-if ! $PASS; then
-  echo "\033[41mCOMMIT FAILED:\033[0m Your commit contains files that should pass ESLint but do not. Please fix the ESLint errors and try again.\n"
-  exit 1
-else
-  echo "\033[42mCOMMIT SUCCEEDED\033[0m\n"
-fi
-
-exit $?
+# ALL Linting Successful
+exit 0
