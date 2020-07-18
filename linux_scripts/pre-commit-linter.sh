@@ -59,6 +59,12 @@ function lint {
           pass=false
         fi
         ;;
+      js) echo "Linting: JavaScript file"
+        eslint ${file}
+        if [ $? -ne 0 ]; then
+          pass=false
+        fi
+        ;;
       go) echo "Linting: GO file"
         golint ${file}
         if [ $? -ne 0 ]; then
