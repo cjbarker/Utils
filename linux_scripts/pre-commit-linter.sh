@@ -4,14 +4,6 @@
 # when applicable: Markdown, JavaScript, Go, Python,
 # TypeScript.
 #
-#
-#
-# #####################################################
-
-# Logic/Flow
-# Check file extension: .md (markdown)
-# Check if given linter command exist: mdl
-# Run linter
 # Output exit code and results from linter
 #
 # See Supported Linters: https://github.com/github/super-linter
@@ -22,6 +14,8 @@
 # JSON = jsonlint
 # YAML = yamllint
 # Bash = shellcheck
+#
+# #####################################################
 
 declare -a TOOLS_TO_INSTALL
 
@@ -89,9 +83,21 @@ function lint {
           pass=false
         fi
         ;;
+      yaml) echo "Linting: YAML file"
+        yamllint ${file}
+        if [ $? -ne 0 ]; then
+          pass=false
+        fi
+        ;;
       *) echoerr "Invalid file extension ${extension}"
         exit 5
     esac
+
+    if [ ${pass} ]; then
+      echo 0
+    else
+      echo 666
+    fi
 }
 
 # ###########################################################
@@ -140,15 +146,22 @@ do
   rc=$(cmd_exists $i)
   if [ "$rc" -ne "0" ]; then
     echoerr "Missing linter - please install ${i}"
-    exit 2
+    exit 3
   fi
 done
 
 # Invoke linter, error msg, and exit when/where applicable
+fail=false
 for FILE in $STAGED_FILES
 do
-  lint ${FILE}
+  rc=$(lint ${FILE})
+  if [ "$rc" -ne "0" ]; then
+    fail=true
+  fi
 done
 
-# ALL Linting Successful
-exit 0
+if [ ${fail} ]; then
+  exit 4
+else
+  exit 0
+fi
