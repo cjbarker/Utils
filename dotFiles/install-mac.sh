@@ -220,3 +220,7 @@ defaults write com.apple.screencapture location ~/Downloads/screenshots
 
 killall Finder
 killall Dock
+
+# TODO add crontab
+# MAILTO=""
+#0 * * * * PATH=/usr/local/bin:${PATH}; brew update; brew upgrade; brew upgrade --cask --greedy; brew cleanup > /Users/cbarker/log/cron-brew.log 2>&1
