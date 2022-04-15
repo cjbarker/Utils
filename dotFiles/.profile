@@ -79,6 +79,9 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 # colorize man page
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# Google Cloud
+export CLOUDSDK_PYTHON=python3.8
+
 #export M2_HOME=/usr/local/Cellar/maven/3.5.0/
 export PATH=$M2:$PATH
 export GOPATH=$HOME/go
@@ -95,8 +98,20 @@ alias java14='export JAVA_HOME=$JAVA_14_HOME; export PATH=$JAVA_HOME/bin:$PATH'
 #default java14
 java14
 
+# Google Cloud Console
+export CLOUDSDK_PYTHON=/usr/bin/python
+
 # disable shell warning when not using ZSH on Mac
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/cbarker/google-cloud-sdk/path.bash.inc' ]; then . '/Users/cbarker/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/cbarker/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/cbarker/google-cloud-sdk/completion.bash.inc'; fi
+
+# GPG - PGP fixes Inappropriate IOCTL for Device
+export GPG_TTY=$(tty)
 
 if [ $(id -u) -eq 0 ];
 then
