@@ -69,7 +69,7 @@ apt install -y libgit2-24 libgit2-dev cmake
 # install rust
 curl https://sh.rustup.rs -sSf | sh
 # install exa
-wget -c https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
+wget -c https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip
 unzip exa-linux-*.zip
 mv exa-linux-x86_64 /usr/local/bin/exa
 rm -rf exa-linux-*.zip
