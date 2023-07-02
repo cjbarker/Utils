@@ -19,7 +19,7 @@ apt install -y python3-opencv
 apt install -y curl wget
 apt install -y git
 apt install -y git-flow
-apt install -y golang-1.10-go
+apt install -y golang-go
 apt install -y tree
 apt install -y bash-completion
 apt install -y tidy
