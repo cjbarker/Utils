@@ -184,6 +184,8 @@ if [ -d ~/.ssh ]; then
     chmod 644 ~/.ssh/*.pub
     chown -R ${USER} ~/.ssh/
 
+    ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+
     # import certs
     eval "$(ssh-agent -s)"
     ssh-add -K ~/.ssh/*_rsa
