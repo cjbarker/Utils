@@ -19,7 +19,7 @@ apt install -y python3-opencv
 apt install -y curl wget
 apt install -y git
 apt install -y git-flow
-apt install -y golang-1.10-go
+apt install -y golang-go
 apt install -y tree
 apt install -y bash-completion
 apt install -y tidy
@@ -69,7 +69,7 @@ apt install -y libgit2-24 libgit2-dev cmake
 # install rust
 curl https://sh.rustup.rs -sSf | sh
 # install exa
-wget -c https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip
+wget -c https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip
 unzip exa-linux-*.zip
 mv exa-linux-x86_64 /usr/local/bin/exa
 rm -rf exa-linux-*.zip
